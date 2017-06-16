@@ -1,0 +1,16 @@
+.toggle-bg {
+	border-radius: 4px;
+    background-color: grey;
+    position: relative;
+    margin: 5px 3px 10px;
+    width: 250px;
+    height: 50px;
+}
+
+.toggle-block {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border-radius: 4px;
+    background-color: rgb(130, 181, 198);
+  }
