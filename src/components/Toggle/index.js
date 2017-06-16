@@ -16,15 +16,15 @@ export default class Toggle extends React.Component {
 	render() {
 		return (
 			<div>
-				<h1>Try the toggole which controls the status and animation </h1>
+				<h2>Try the toggole which controls the status and animation. The block itself is also clickable.</h2>
 				<button onClick={this.handleClick}>
 				Toggle
 				</button>
-				<h2>Open: {this.state.open.toString()}</h2>
+				<h2>Status: {this.state.open? "open" : "closed"}</h2>
 				<Motion style={{x: spring(this.state.open ? 200 : 0)}}>
 				{({x}) => 
 					<div className="toggle-bg">
-					<div className="toggle-block" style={{
+					<div className="toggle-block" onClick={this.handleClick} style={{
 						transform: `translate3d(${x}px, 0, 0)`,
 					}}>
 					</div>
