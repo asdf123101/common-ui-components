@@ -2,7 +2,7 @@ import React from 'react';
 
 function Tabs(props) {
 	return (
-		<h2>Test</h2>
+		<h2>The navigation bar is an example of tab view.</h2>
 	)
 }
 

@@ -8,6 +8,7 @@ import {
 
 import App from './components/App';
 import Nav from './components/Nav';
+import Toggle from './components/Toggle';
 import Home from './components/Home';
 import Tabs from './components/Tabs';
 import NotFound from './components/NotFound';
@@ -19,6 +20,7 @@ const Routes = (props) => (
     <Nav />
   	<Switch>
   	<Route path="/" exact component={Home} />
+    <Route path="/Toggle" component={Toggle} />
     <Route path="/tabs" component={Tabs} />
     <Route component={NotFound} />
     </Switch>

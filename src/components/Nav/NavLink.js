@@ -4,6 +4,6 @@ import { NavLink } from 'react-router-dom'
 
 export default React.createClass({
   render() {
-    return <NavLink {...this.props} activeStyle={{color: 'red'}} />
+    return <NavLink {...this.props} activeStyle={{backgroundColor: "#111"}} />
   }
 })
