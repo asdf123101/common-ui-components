@@ -25,4 +25,4 @@ ui.sublime-project
 ui.sublime-workspace
 
 # eslint
-.eslint.json
+.eslintrc.json
