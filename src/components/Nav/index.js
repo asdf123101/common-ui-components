@@ -8,6 +8,7 @@ const Nav = () =>
     <li><NavLink to="/" exact={true}>Home</NavLink></li>
     <li><NavLink to="/Toggle">Toggle</NavLink></li>
     <li><NavLink to="/tabs">Tab View</NavLink></li>
+    <li><NavLink to="/counter">Counter</NavLink></li>
     <li><NavLink to="/tabss">Test 404</NavLink></li>
   </ul>;
 

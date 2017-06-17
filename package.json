@@ -3,10 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
+    "react-motion": "^0.5.0",
+    "react-redux": "^5.0.5",
     "react-router-dom": "^4.1.1",
-    "react-motion": "^0.5.0"
+    "redux": "^3.7.0"
   },
   "devDependencies": {
     "eslint": "^3.19.0",
@@ -25,8 +28,8 @@
     "eject": "react-scripts eject"
   },
   "lint-staged": {
-      "*.js": [
-      "prettier --single-quote --trailing-comma --write",
+    "*.js": [
+      "prettier --single-quote --es5 --write",
       "git add"
     ]
   }
