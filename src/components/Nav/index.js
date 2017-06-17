@@ -1,5 +1,7 @@
-import React from "react";
-import NavLink from "./NavLink";
+import React from 'react';
+import NavLink from './NavLink';
+
+import './style.css';
 
 const Nav = () =>
   <ul className="nav">
