@@ -7,6 +7,7 @@ import Nav from './components/Nav';
 import Toggle from './components/Toggle';
 import Home from './components/Home';
 import TabView from './components/Tabs';
+import Modal from './components/Modal';
 import Counter from './components/Counter';
 import NotFound from './components/NotFound';
 
@@ -18,9 +19,10 @@ const Routes = props =>
       <main className="components">
         <Switch>
           <Route path="/" exact component={Home} />
-          <Route path="/Toggle" component={Toggle} />
+          <Route path="/toggle" component={Toggle} />
           <Route path="/tabs" component={TabView} />
           <Route path="/counter" component={Counter} />
+          <Route path="/modal" component={Modal} />
           <Route component={NotFound} />
         </Switch>
       </main>
