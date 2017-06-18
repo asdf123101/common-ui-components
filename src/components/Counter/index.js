@@ -33,12 +33,16 @@ const app = (state = 0, action) => {
 let store = createStore(app);
 
 // react component
-const StaticCounter = props =>
+const StaticCounter = ({ value, handleClickAdd, handleClickMinus }) =>
   <div>
-    <p>This state of this counter is managed by Redux instead of React.</p>
-    <h2>{props.value}</h2>
-    <button onClick={props.handleClickAdd}>Add </button>
-    <button onClick={props.handleClickMinus}>Minus </button>
+    <p>
+      This state of this counter is managed by Redux instead of React. Note that
+      the counter does not change after switching to other components because
+      the state in redux is not managed by the root component.
+    </p>
+    <h2>{value}</h2>
+    <button onClick={handleClickAdd}>Add </button>
+    <button onClick={handleClickMinus}>Minus </button>
   </div>;
 
 StaticCounter.propTypes = {

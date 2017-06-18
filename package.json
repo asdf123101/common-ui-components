@@ -12,6 +12,7 @@
     "redux": "^3.7.0"
   },
   "devDependencies": {
+    "enzyme": "^2.8.2",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^15.0.1",
     "eslint-config-google": "^0.8.0",
