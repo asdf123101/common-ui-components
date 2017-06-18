@@ -1,8 +1,10 @@
 import React from 'react'
 
+import './style.css'
+
 const ModalWindow = ({ isActive, onClickClose }) => <div className={'modal' + isActive}>
 <button className="hide" onClick={onClickClose}>X</button>
-Test Modal
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 </div>
 
 export default class Modal extends React.Component {
@@ -19,6 +21,7 @@ export default class Modal extends React.Component {
 	render() {
 		return (
 		<div>
+			<p>A modal will show after clicking the button</p>
 			<button className="show" onClick={this.handleClick}>Show Modal</button>
 			<ModalWindow isActive={(this.state.isActive) ? ' active' : ''} onClickClose={this.handleCloseModal}/>
 		</div>)
