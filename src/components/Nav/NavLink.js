@@ -2,10 +2,10 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-export default React.createClass({
+export default class MyNav extends React.Component {
   render() {
     return (
       <NavLink {...this.props} activeStyle={{ backgroundColor: '#111' }} />
     );
-  },
-});
+  }
+}
