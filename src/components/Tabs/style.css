@@ -1,5 +1,6 @@
 
 .tab {
+	border: 0;
 	border-top: 1px solid black;
 	border-left: 1px solid black;
 	border-right: 1px solid black;
@@ -9,6 +10,8 @@
 	margin-right: 5px;
 	color: white;
 	display: inline-block;
+	outline:none;
+	width: 80px;
 }
 
 .tab.active {

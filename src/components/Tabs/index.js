@@ -9,13 +9,13 @@ const TabGroup = props => {
   return (
     <div className="tabGroup">
       {props.tabs.map((tabName, id) =>
-        <span
+        <button
           onClick={() => props.handleClick(id)}
           className={'tab ' + props.isActive(id)}
           key={tabName}
         >
           {tabName}
-        </span>
+        </button>
       )}
     </div>
   );
