@@ -10,6 +10,7 @@ import TabView from './components/Tabs';
 import Modal from './components/Modal';
 import SlideShow from './components/SlideShow';
 import Counter from './components/Counter';
+import Form from './components/Form';
 import NotFound from './components/NotFound';
 
 const Routes = props =>
@@ -25,6 +26,7 @@ const Routes = props =>
           <Route path="/counter" component={Counter} />
           <Route path="/modal" component={Modal} />
           <Route path="/slideshow" component={SlideShow} />
+          <Route path="/form" component={Form} />
           <Route component={NotFound} />
         </Switch>
       </main>

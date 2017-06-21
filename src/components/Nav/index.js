@@ -11,6 +11,7 @@ const Nav = () =>
     <li><NavLink to="/counter">Counter</NavLink></li>
     <li><NavLink to="/modal">Modal</NavLink></li>
     <li><NavLink to="/slideshow">Slide</NavLink></li>
+    <li><NavLink to="/form">Form</NavLink></li>
     <li><NavLink to="/tabss">Test 404</NavLink></li>
   </ul>;
 
