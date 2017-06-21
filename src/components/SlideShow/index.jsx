@@ -13,7 +13,9 @@ static propTypes = {
 render() {
 	const className = 'slide slide'+ this.props.index + this.props.center
 		return (
-			<div className={className} style={{zIndex: this.props.zIndex}}><h2>{this.props.slide}</h2></div>
+			<div className={className} style={{zIndex: this.props.zIndex}}>
+			<h2>{this.props.slide}</h2>
+			</div>
 			)
 }
 }
@@ -34,9 +36,13 @@ export default class SlideShow extends React.Component {
 			{this.state.indices.map((slide, index) => {
 				const center = (index===(nSlide-1)/2) ? ' center' : ''
 				let zIndex = null
-				if (this.state.direction === 'left' && index === this.state.indices.length-1) {zIndex = -10}
-				if (this.state.direction === 'right' && index === 0) {zIndex = -10}
-				return (<Slide index={index} center={center} slide={slide} key={slide} zIndex={zIndex}/>)
+				if (this.state.direction === 'left' && 
+					index === this.state.indices.length-1) 
+					{zIndex = -10}
+				if (this.state.direction === 'right' && index === 0) 
+					{zIndex = -10}
+				return (<Slide index={index} center={center} 
+					slide={slide} key={slide} zIndex={zIndex}/>)
 			})}
 			</FlipMove>
 			</div>
@@ -52,7 +58,8 @@ export default class SlideShow extends React.Component {
 	
 	handleRightClick = () => {
 		let shiftedState = this.state.indices.slice(0,-1)
-		let newState = [this.state.indices[this.state.indices.length-1],...shiftedState]
+		let newState = [this.state.indices[this.state.indices.length-1],
+						...shiftedState]
 		this.setState({indices: newState})
 		this.setState({direction: 'right'})
 	}
@@ -62,9 +69,13 @@ export default class SlideShow extends React.Component {
 		
 		<div  className='slideshow'>
 			<p>Clicking the button will slide the blocks and the center block is always colored. The animation is borrowed from React-flip-move library with some hack. Overall doing transition animation in React is a bit hard. </p>
-			<button className="left" onClick={this.handleLeftClick}>&lt;</button>
+			<button className="left" onClick={this.handleLeftClick}>
+			&lt;
+			</button>
 			{this.renderSlides()}
-			<button className="right" onClick={this.handleRightClick}>&gt;</button>
+			<button className="right" onClick={this.handleRightClick}>
+			&gt;
+			</button>
 		</div>
 		
 		)
