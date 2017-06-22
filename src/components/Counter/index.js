@@ -30,15 +30,13 @@ const app = (state = 0, action) => {
 };
 
 // create store
-let store = createStore(app);
+const store = createStore(app);
 
 // react component
 const StaticCounter = ({ value, handleClickAdd, handleClickMinus }) =>
   <div>
     <p>
-      This state of this counter is managed by Redux instead of React. Note that
-      the counter does not change after switching to other components because
-      the state in redux is not managed by the root component.
+      This state of this counter is managed by Redux instead of React. Note that the counter does not change after switching to other components because  the state in redux is not managed by the root component.
     </p>
     <h2>{value}</h2>
     <button onClick={handleClickAdd}>Add </button>
@@ -48,16 +46,16 @@ const StaticCounter = ({ value, handleClickAdd, handleClickMinus }) =>
 StaticCounter.propTypes = {
   value: PropTypes.number.isRequired,
   handleClickAdd: PropTypes.func.isRequired,
-  handleClickMinus: PropTypes.func.isRequired
+  handleClickMinus: PropTypes.func.isRequired,
 };
 // activate the container StaticCounter
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     value: state
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     handleClickAdd: () => {
       dispatch(add());
