@@ -1,11 +1,11 @@
 import React from 'react';
-import Form from '../components/Form';
+import Form, { Warning } from '../components/Form';
 import { mount, shallow } from 'enzyme';
 
 describe('Place holder', () => {
   const colorTest = (inputWindow, color) => {
-    expect(inputWindow.find('input').at(0).prop('style'))
-      .toHaveProperty('color', color);
+    const inputField = inputWindow.find('input').at(0).prop('style');
+    expect(inputField).toHaveProperty('color', color);
   };
 
   it('Placeholder shows on loading and color is grey', () => {
@@ -22,28 +22,68 @@ describe('Place holder', () => {
   });
 
   it('Typing in the input area shows the text with color black, \
-  	deleting the text shows placeholder again on blur', () => {
+ deleting the text shows placeholder again on blur', () => {
     const inputWindow = mount(<Form />);
     const inputField = inputWindow.find('input').at(0);
-      inputField.simulate('focus');
-      const newValue = 'Entered new value'
-    inputField.node.value = newValue;
-    inputField.simulate('change', inputField);
+    const placeHolder = inputField.prop('value');
+    const name = inputField.prop('name');
+    inputField.simulate('focus');
+    expect(inputField.prop('value')).toBe('');
+    const newValue = 'Entered new value';
+    inputField.simulate('change', {
+      target: {
+        name: name,
+        value: newValue
+      }
+    });
     expect(inputField.prop('value')).toBe(newValue);
     colorTest(inputWindow, 'black');
-    inputField.simulate('change', { target: { value: '' } });
+    inputField.simulate('change', {
+      target: {
+        name: name,
+        value: ''
+      }
+    });
     inputField.simulate('blur');
-    expect(inputField.prop('value')).toBe('test');
+    expect(inputField.prop('value')).toBe(placeHolder);
     colorTest(inputWindow, 'grey');
   });
 });
 
 describe('Validation', () => {
-  it('Exceeding the max length shows show a warning', () => {
-    const inputWindow = mount(<InputWithPlaceHolder maxLength={8}/>)
-    const inputField = inputWindow.find('input')
-    const newValue = 'test   test'
-    inputField.simulate('change', { target: { value: newValue } });
-    expect(inputWindow.find('.warning').text()).toTruthy()
-  })
-})
+  it('Display a warning when isValid prop is false', () => {
+    const warning1 = shallow(
+      <Warning isValid={false} validationType="length" />
+    );
+    expect(warning1.find('span.warning').length).toBe(1);
+    const warning2 = shallow(
+      <Warning isValid={true} validationType="length" />
+    );
+    expect(warning2.find('span.warning').length).toBe(0);
+  });
+
+  it('Exceeding the max length shows a warning on submit', () => {
+    const formWindow = mount(<Form />);
+    const inputField = formWindow.find('input').at(0);
+    const name = inputField.prop('name');
+    const newValue = 'test';
+    inputField.simulate('change', {
+      target: { name: name, value: newValue }
+    });
+    formWindow.find('input').last().simulate('submit');
+    expect(formWindow.find('.warning').at(0).length).toBe(1);
+  });
+
+    it('Unmatched password shows a warning on submit', () => {
+    const formWindow = mount(<Form />);
+      const inputField = formWindow.find('input').at(1);
+      expect(inputField.prop('type')).toBe('password')
+    const name = inputField.prop('name');
+    const newValue = 'test';
+    inputField.simulate('change', {
+      target: { name: name, value: newValue }
+    });
+    formWindow.find('input').last().simulate('submit');
+    expect(formWindow.find('.warning').length).toBe(2);
+  });
+});
