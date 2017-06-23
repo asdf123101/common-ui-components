@@ -1,90 +1,103 @@
 import React from 'react';
+import PropTypes from 'prop-types'
 
-export class InputWithPlaceHolder extends React.Component {
+export default class Form extends React.Component {
+  static placeHolder = {
+    name: 'Enter your name',
+    password: '12345678',
+    password2: '12345678',
+    comment: 'Enter your comment'
+  }
+  
   state = {
-    value: this.props.placeHolder,
-    fontColor: 'grey'
-  };
+    ...this.constructor.placeHolder
+  }
 
-  handleFocus = () => {
-    if (this.state.fontColor === 'grey') {
+  handleFocus = (event) => {
+    const target = event.target
+    const color = target.style.color;
+    const name = target.name;
+    if (target.value === this.constructor.placeHolder[name] && color === 'grey') {
       this.setState({
-        value: '',
-        fontColor: 'black'
-      });
+        [name]:'',
+      })
     }
   };
    
-  handleChange = event => {
-    this.setState({
-      value: event.target.value
-    });
-  };
-
-  handleBlur = () => {
-    if (this.state.value.length === 0) {
+  handleBlur = (event) => {
+    const target = event.target
+    const name = target.name
+    if (target.value.length === 0) {
       this.setState({
-        value: this.props.placeHolder,
-        fontColor: 'grey'
+        [name]: this.constructor.placeHolder[name],
       });
     }
   };
+  
+  handleChange = event => {
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+    this.setState({[name]:value})
+  };
 
-  render() {
-    if (this.props.type === 'textarea') {
+
+  renderInput = (type,name) => {
+    const color = (this.state[name].length === 0) ? 'black' : 'grey'
+    
+    if (type === 'textarea') {
       return (
         <textarea
-          type={this.props.type}
-          value={this.state.value}
+           type={type}
+           name={name}
+          value={this.state[name]}
           onFocus={this.handleFocus}
           onChange={this.handleChange}
-          style={{ color: this.state.fontColor }}
+          style={{ color: color }}
           onBlur={this.handleBlur}
-          className="input"
+          className={"input " + name}
         />
       );
     }
 
     return (
       <input
-        type={this.props.type}
-        value={this.state.value}
-        onFocus={this.handleFocus}
-        onChange={this.handleChange}
-        style={{ color: this.state.fontColor }}
-        onBlur={this.handleBlur}
-        className="input"
+           type={type}
+           name={name}
+          value={this.state[name]}
+          onFocus={this.handleFocus}
+          onChange={this.handleChange}
+          style={{ color: color }}
+          onBlur={this.handleBlur}
+           className={"input " + name}
       />
     );
   }
-}
-
-export default class Form extends React.Component {
+  
   render() {
     return (
       <form>
         <label>
           Name:
-          <InputWithPlaceHolder type="text" placeHolder="Enter your name" />
+          {this.renderInput('text','name')}
         </label>
         <br />
         <label>
           Password:
-          <InputWithPlaceHolder type="password" placeHolder="12345678" />
+          {this.renderInput('password','password')}
         </label>
         <br />
         <label>
           Password:
-          <InputWithPlaceHolder type="password" placeHolder="12345678" />
+{this.renderInput('password','password2')}
         </label>
         <br />
         <label>
           Comments: <br />
-          <InputWithPlaceHolder
-            type="textarea"
-            placeHolder="Enter your comments."
-          />
+          {this.renderInput('textarea','comment')}
         </label>
+        <br />
+        <input type="submit" value="Submit" />
       </form>
     );
   }
