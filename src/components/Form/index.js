@@ -1,30 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import './style.css';
 
 const Warning = ({ isValid, validationType, length }) => {
-  switch(validationType) {
-  case 'length':
-    if (isValid === undefined || isValid) {
+  switch (validationType) {
+    case 'length':
+    return (isValid === undefined || isValid)
+        ? null
+      : (<span className="warning">
+            This field should at least have {length} characters.
+         </span>);
+    case 'passwordMatch':
+      return isValid === undefined || isValid
+        ? null
+        : <span className="warning">
+            Password don't match.
+          </span>;
+    default:
       return null;
-    } else {
-      return (
-        <span className="warning">
-          This field should at least have {length} characters.
-        </span>
-      );
-    }
-  case 'passwordMatch':
-    if (isValid === undefined || isValid) {
-      return null;
-    } else {
-      return (
-        <span className="warning">
-          Password don't match.
-        </span>
-      );
-    }
-  default:
-    return null
   }
 };
 
@@ -39,9 +33,9 @@ Warning.propTypes = {
 export default class Form extends React.Component {
   static placeHolder = {
     name: { message: 'Enter your name', color: 'grey' },
-    password: { message: '12345678', color: 'grey' },
+    password: { message: '12345678', color: 'grey', isValid: true },
     password2: { message: '12345678', color: 'grey' },
-    comment: { message: 'Enter your comment', color: 'grey' }
+    comments: { message: 'Enter your comment', color: 'grey' }
   };
 
   state = {
@@ -57,6 +51,10 @@ export default class Form extends React.Component {
         this.setState({
           [name]: Object.assign({}, this.state[name], { isValid: false })
         });
+      } else {
+        this.setState({
+          [name]: Object.assign({}, this.state[name], { isValid: true })
+        });
       }
     },
     passwordMatch: name => {
@@ -66,20 +64,31 @@ export default class Form extends React.Component {
         this.setState({
           password2: Object.assign({}, this.state.password2, { isValid: false })
         });
+      } else {
+        this.setState({
+          password2: Object.assign({}, this.state[name], { isValid: true })
+        });
       }
     }
   };
 
-  validateCenter = () => {
-    this.validateHelper.length('name', 8);
-    this.validateHelper.passwordMatch('password');
+  validateCenter = (name) => {
+    this.validateHelper.length(name, 5);
+    // this.validateHelper.passwordMatch(name);
+    // this.validateHelper.length(name, 20);
   };
 
   handleSubmit = event => {
     event.preventDefault();
-    this.validateCenter();
-    console.log(this.state);
-  };
+    // this.validateCenter();
+// const keys = Object.keys(this.state)
+// let isAllValid = true
+// keys.forEach(key => {
+// let status = (this.state[key].isValid === true) ? true : false
+// isAllValid = status && isAllValid
+//   })
+};
+
   handleFocus = event => {
     const target = event.target;
     const name = target.name;
@@ -98,6 +107,7 @@ export default class Form extends React.Component {
     const target = event.target;
     const name = target.name;
     const message = this.constructor.placeHolder[name].message;
+ this.validateCenter(name);
     if (target.value.length === 0) {
       this.setState({
         [name]: Object.assign({}, this.state[name], {
@@ -118,15 +128,17 @@ export default class Form extends React.Component {
   };
 
   renderInput = (type, name) => {
+const borderColor = (this.state[name].isValid === false) ? 'red' : null
     const props = {
       type: type,
       name: name,
+id: name,
       value: this.state[name].message,
       onFocus: this.handleFocus,
       onChange: this.handleChange,
-      style: { color: this.state[name].color },
+      style: { color: this.state[name].color, borderColor: borderColor },
       onBlur: this.handleBlur,
-      className: 'input ' + name
+      className:  name
     };
 
     if (type === 'textarea') {
@@ -138,34 +150,41 @@ export default class Form extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
+      <form onSubmit={this.handleSubmit} action={<Link to="/tabss"/>}>
+        <label htmlFor='name'>
           Name:
+        </label>
           {this.renderInput('text', 'name')}
-          <Warning isValid={this.state.name.isValid} validationType="length" />
-        </label>
-        <br />
-        <label>
+          <Warning
+            isValid={this.state.name.isValid}
+            validationType="length"
+            length={5}
+          />
+
+        <label htmlFor="password">
           Password:
+        </label>
           {this.renderInput('password', 'password')}
-        </label>
-        <br />
-        <label>
+        <label htmlFor="password2">
           Password:
+        </label>
           {this.renderInput('password', 'password2')}
           <Warning
             isValid={this.state.password2.isValid}
             validationType="passwordMatch"
           />
+        <label htmlFor="comments">
+          Comments:
         </label>
-        <br />
-        <label>
-          Comments: <br />
-          {this.renderInput('textarea', 'comment')}
-        </label>
-        <br />
-        <input type="submit" value="Submit" />
+          {this.renderInput('textarea', 'comments')}
+          <Warning
+            isValid={this.state.comments.isValid}
+            validationType="length"
+            length={20}
+          />
+ <input type="submit" value="Submit" />
       </form>
-    );
-  }
+      )
+} 
+
 }

@@ -74,16 +74,17 @@ describe('Validation', () => {
     expect(formWindow.find('.warning').at(0).length).toBe(1);
   });
 
-    it('Unmatched password shows a warning on submit', () => {
+  it('Unmatched password shows a warning on submit', () => {
     const formWindow = mount(<Form />);
-      const inputField = formWindow.find('input').at(1);
-      expect(inputField.prop('type')).toBe('password')
+    formWindow.find('input').last().simulate('submit');
+    const inputField = formWindow.find('input').at(1);
+    expect(inputField.prop('type')).toBe('password');
     const name = inputField.prop('name');
     const newValue = 'test';
     inputField.simulate('change', {
       target: { name: name, value: newValue }
     });
     formWindow.find('input').last().simulate('submit');
-    expect(formWindow.find('.warning').length).toBe(2);
+    expect(formWindow.find('.warning').at(1).length).toBe(1);
   });
 });
