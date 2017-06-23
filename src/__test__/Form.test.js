@@ -62,7 +62,7 @@ describe('Validation', () => {
     expect(warning2.find('span.warning').length).toBe(0);
   });
 
-  it('Exceeding the max length shows a warning on submit', () => {
+  it('Exceeding the min length shows a warning on submit', () => {
     const formWindow = mount(<Form />);
     const inputField = formWindow.find('input').at(0);
     const name = inputField.prop('name');
@@ -70,7 +70,7 @@ describe('Validation', () => {
     inputField.simulate('change', {
       target: { name: name, value: newValue }
     });
-    formWindow.find('input').last().simulate('submit');
+    inputField.simulate('blur')
     expect(formWindow.find('.warning').at(0).length).toBe(1);
   });
 
