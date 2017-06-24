@@ -70,11 +70,11 @@ describe('Validation', () => {
     inputField.simulate('change', {
       target: { name: name, value: newValue }
     });
-    inputField.simulate('blur')
+    inputField.simulate('blur');
     expect(formWindow.find('.warning').at(0).length).toBe(1);
   });
 
-  it('Unmatched password shows a warning on submit', () => {
+  it('Unmatched password shows a warning on blur', () => {
     const formWindow = mount(<Form />);
     formWindow.find('input').last().simulate('submit');
     const inputField = formWindow.find('input').at(1);
@@ -84,7 +84,7 @@ describe('Validation', () => {
     inputField.simulate('change', {
       target: { name: name, value: newValue }
     });
-    formWindow.find('input').last().simulate('submit');
-    expect(formWindow.find('.warning').at(1).length).toBe(1);
+    inputField.simulate('blur');
+    expect(formWindow.find('.warning').length).toBe(1);
   });
 });

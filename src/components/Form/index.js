@@ -6,11 +6,11 @@ import './style.css';
 const Warning = ({ isValid, validationType, length }) => {
   switch (validationType) {
     case 'length':
-    return (isValid === undefined || isValid)
+      return isValid === undefined || isValid
         ? null
-      : (<span className="warning">
+        : <span className="warning">
             This field should at least have {length} characters.
-         </span>);
+          </span>;
     case 'passwordMatch':
       return isValid === undefined || isValid
         ? null
@@ -42,52 +42,42 @@ export default class Form extends React.Component {
     ...this.constructor.placeHolder
   };
 
-  validateHelper = {
-    length: (name, length) => {
-      if (
-        this.state[name].message.length <= length ||
-        this.state[name].color === 'grey'
-      ) {
-        this.setState({
-          [name]: Object.assign({}, this.state[name], { isValid: false })
-        });
-      } else {
-        this.setState({
-          [name]: Object.assign({}, this.state[name], { isValid: true })
-        });
-      }
-    },
-    passwordMatch: name => {
-      const password1 = this.state.password.message;
-      const password2 = this.state.password2.message;
-      if (password1 !== password2 || this.state[name].color === 'grey') {
-        this.setState({
-          password2: Object.assign({}, this.state.password2, { isValid: false })
-        });
-      } else {
-        this.setState({
-          password2: Object.assign({}, this.state[name], { isValid: true })
-        });
-      }
-    }
+  // validateCenter = {
+  //   name: this.validateHelper.length('name', 5),
+  //   password2: this.validateHelper.passwordMatch('password'),
+  //   comments: this.validateHelper.length('comments', 20),};
+
+  validateLength = (name, length) => {
+    const isValid = !(
+      this.state[name].message.length <= length ||
+      this.state[name].color === 'grey'
+    );
+    this.setState({
+      [name]: Object.assign({}, this.state[name], { isValid: isValid })
+    });
   };
 
-  validateCenter = (name) => {
-    this.validateHelper.length(name, 5);
-    // this.validateHelper.passwordMatch(name);
-    // this.validateHelper.length(name, 20);
+  validatePasswordMatch = () => {
+    const password1 = this.state.password.message;
+    const password2 = this.state.password2.message;
+    const isValid = !(
+      password1 !== password2 || this.state.password2.color === 'grey'
+    );
+    this.setState({
+      password2: Object.assign({}, this.state.password2, { isValid: isValid })
+    });
   };
 
   handleSubmit = event => {
     event.preventDefault();
     // this.validateCenter();
-// const keys = Object.keys(this.state)
-// let isAllValid = true
-// keys.forEach(key => {
-// let status = (this.state[key].isValid === true) ? true : false
-// isAllValid = status && isAllValid
-//   })
-};
+    // const keys = Object.keys(this.state)
+    // let isAllValid = true
+    // keys.forEach(key => {
+    // let status = (this.state[key].isValid === true) ? true : false
+    // isAllValid = status && isAllValid
+    //   })
+  };
 
   handleFocus = event => {
     const target = event.target;
@@ -107,7 +97,18 @@ export default class Form extends React.Component {
     const target = event.target;
     const name = target.name;
     const message = this.constructor.placeHolder[name].message;
- this.validateCenter(name);
+    switch (name) {
+      case 'name':
+        this.validateLength(name, 5);
+        break;
+      case 'password':
+      case 'password2':
+        this.validatePasswordMatch();
+        break;
+      case 'comments':
+        this.validateLength(name, 10);
+        break;
+    }
     if (target.value.length === 0) {
       this.setState({
         [name]: Object.assign({}, this.state[name], {
@@ -128,17 +129,17 @@ export default class Form extends React.Component {
   };
 
   renderInput = (type, name) => {
-const borderColor = (this.state[name].isValid === false) ? 'red' : null
+    const borderColor = this.state[name].isValid === false ? 'red' : null;
     const props = {
       type: type,
       name: name,
-id: name,
+      id: name,
       value: this.state[name].message,
       onFocus: this.handleFocus,
       onChange: this.handleChange,
       style: { color: this.state[name].color, borderColor: borderColor },
       onBlur: this.handleBlur,
-      className:  name
+      className: name
     };
 
     if (type === 'textarea') {
@@ -150,41 +151,39 @@ id: name,
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit} action={<Link to="/tabss"/>}>
-        <label htmlFor='name'>
+      <form onSubmit={this.handleSubmit} action={<Link to="/tabss" />}>
+        <label htmlFor="name">
           Name:
         </label>
-          {this.renderInput('text', 'name')}
-          <Warning
-            isValid={this.state.name.isValid}
-            validationType="length"
-            length={5}
-          />
-
+        {this.renderInput('text', 'name')}
+        <Warning
+          isValid={this.state.name.isValid}
+          validationType="length"
+          length={5}
+        />
         <label htmlFor="password">
           Password:
         </label>
-          {this.renderInput('password', 'password')}
+        {this.renderInput('password', 'password')}
         <label htmlFor="password2">
           Password:
         </label>
-          {this.renderInput('password', 'password2')}
-          <Warning
-            isValid={this.state.password2.isValid}
-            validationType="passwordMatch"
-          />
+        {this.renderInput('password', 'password2')}
+        <Warning
+          isValid={this.state.password2.isValid}
+          validationType="passwordMatch"
+        />
         <label htmlFor="comments">
           Comments:
         </label>
-          {this.renderInput('textarea', 'comments')}
-          <Warning
-            isValid={this.state.comments.isValid}
-            validationType="length"
-            length={20}
-          />
- <input type="submit" value="Submit" />
+        {this.renderInput('textarea', 'comments')}
+        <Warning
+          isValid={this.state.comments.isValid}
+          validationType="length"
+          length={20}
+        />
+        <input type="submit" value="Submit" />
       </form>
-      )
-} 
-
+    );
+  }
 }
