@@ -1,5 +1,5 @@
 import React from 'react';
-import Form, { Warning } from '../components/Form';
+import Form from '../components/Form';
 import { mount, shallow } from 'enzyme';
 
 describe('Place holder', () => {
@@ -51,18 +51,7 @@ describe('Place holder', () => {
 });
 
 describe('Validation', () => {
-  it('Display a warning when isValid prop is false', () => {
-    const warning1 = shallow(
-      <Warning isValid={false} validationType="length" />
-    );
-    expect(warning1.find('span.warning').length).toBe(1);
-    const warning2 = shallow(
-      <Warning isValid={true} validationType="length" />
-    );
-    expect(warning2.find('span.warning').length).toBe(0);
-  });
-
-  it('Exceeding the min length shows a warning on submit', () => {
+  it('Not meeting the min length shows a warning on blur', () => {
     const formWindow = mount(<Form />);
     const inputField = formWindow.find('input').at(0);
     const name = inputField.prop('name');
@@ -76,7 +65,6 @@ describe('Validation', () => {
 
   it('Unmatched password shows a warning on blur', () => {
     const formWindow = mount(<Form />);
-    formWindow.find('input').last().simulate('submit');
     const inputField = formWindow.find('input').at(1);
     expect(inputField.prop('type')).toBe('password');
     const name = inputField.prop('name');
@@ -85,6 +73,13 @@ describe('Validation', () => {
       target: { name: name, value: newValue }
     });
     inputField.simulate('blur');
-    expect(formWindow.find('.warning').length).toBe(1);
+    expect(formWindow.find('.warning').length).toBeTruthy();
+  });
+  
+   it('Submitting an empty form shows all warnings', () => {
+    const formWindow = mount(<Form />);
+    formWindow.simulate('submit');
+    // two warnings on two pwd input fields
+     expect(formWindow.find('.warning').length).toBeTruthy();
   });
 });

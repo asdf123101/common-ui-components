@@ -1,84 +1,97 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { Motion, spring } from 'react-motion';
 import './style.css';
-
-const Warning = ({ isValid, validationType, length }) => {
-  switch (validationType) {
-    case 'length':
-      return isValid === undefined || isValid
-        ? null
-        : <span className="warning">
-            This field should at least have {length} characters.
-          </span>;
-    case 'passwordMatch':
-      return isValid === undefined || isValid
-        ? null
-        : <span className="warning">
-            Password don't match.
-          </span>;
-    default:
-      return null;
-  }
-};
-
-export { Warning };
-
-Warning.propTypes = {
-  isValid: PropTypes.bool,
-  validationType: PropTypes.string.isRequired,
-  length: PropTypes.number
-};
 
 export default class Form extends React.Component {
   static placeHolder = {
-    name: { message: 'Enter your name', color: 'grey' },
-    password: { message: '12345678', color: 'grey', isValid: true },
-    password2: { message: '12345678', color: 'grey' },
-    comments: { message: 'Enter your comment', color: 'grey' }
+    name: { message: 'Enter your name', color: 'grey', warnings: [] },
+    password: { message: '12345678', color: 'grey', warnings: [] },
+    password2: { message: '12345678', color: 'grey', warnings: [] },
+    comments: { message: 'Enter your comment', color: 'grey', warnings: [] }
   };
 
   state = {
     ...this.constructor.placeHolder
   };
 
-  // validateCenter = {
-  //   name: this.validateHelper.length('name', 5),
-  //   password2: this.validateHelper.passwordMatch('password'),
-  //   comments: this.validateHelper.length('comments', 20),};
-
-  validateLength = (name, length) => {
-    const isValid = !(
-      this.state[name].message.length <= length ||
-      this.state[name].color === 'grey'
+  validateRequired = name => {
+    const warning = (
+            <Motion defaultStyle={{x:0}} style={{ x: spring(1) }}>
+        {({x}) =>
+          <span className="warning" key="isRequired" style={{opacity:x}}>
+        This field is required.
+      </span>}
+           </Motion>
     );
-    this.setState({
-      [name]: Object.assign({}, this.state[name], { isValid: isValid })
-    });
+    const color = this.state[name].color;
+    return this.state[name].message.length > 0 && color !== 'grey'
+      ? null
+      : warning;
   };
 
-  validatePasswordMatch = () => {
-    const password1 = this.state.password.message;
-    const password2 = this.state.password2.message;
-    const isValid = !(
-      password1 !== password2 || this.state.password2.color === 'grey'
+  validateLength = (name, length) => {
+    const warning = (
+      <Motion defaultStyle={{x:0}} style={{ x: spring(1) }}>
+        {({x}) =>
+          <span className="warning" key="minLength" style={{opacity: x}}>
+        This field should at least have {length} characters.
+      </span>}
+      </Motion>
     );
-    this.setState({
-      password2: Object.assign({}, this.state.password2, { isValid: isValid })
-    });
+    const color = this.state[name].color;
+    return this.state[name].message.length >= length && color !== 'grey'
+      ? null
+      : warning;
+  };
+
+  validatePasswordMatch = (name1, name2) => {
+    const password1 = this.state[name1].message;
+    const password2 = this.state[name2].message;
+    const warning = (
+      <span className="warning" key="pwdMatch">
+        Password don't match.
+      </span>
+    );
+    const color1 = this.state[name1].color;
+    return password1 === password2 && color1 !== 'grey' ? null : warning;
   };
 
   handleSubmit = event => {
-    event.preventDefault();
-    // this.validateCenter();
-    // const keys = Object.keys(this.state)
-    // let isAllValid = true
-    // keys.forEach(key => {
-    // let status = (this.state[key].isValid === true) ? true : false
-    // isAllValid = status && isAllValid
-    //   })
+    // force validate all fields
+    const keys = Object.keys(this.state);
+    keys.forEach(name => {
+       const warnings = this.validateItem(name);
+if (name === 'password' || name === 'password2') {
+      // match two password input behavior
+      this.setState({
+        password: Object.assign({}, this.state.password, {
+          warnings
+        }),
+        password2: Object.assign({}, this.state.password2, {
+          warnings
+        })
+      });
+    } else {
+      this.setState({
+        [name]: Object.assign({}, this.state[name], {
+          warnings
+        })
+      });
+    }
+    });
+
+    const inValidFields = keys.filter(
+      name => this.state[name].warnings.length !== 0
+    );
+    if (inValidFields.length !== 0 || this.state.password.color === 'grey') {event.preventDefault()};
   };
 
+  wrapWarnings = (...theArgs) => {
+    const validWarnings = theArgs.filter(arg => arg !== null);
+    return validWarnings;
+  };
   handleFocus = event => {
     const target = event.target;
     const name = target.name;
@@ -93,27 +106,61 @@ export default class Form extends React.Component {
     }
   };
 
+  validateItem = name => {
+    let warnings;
+    switch (name) {
+      case 'name':
+        warnings = this.wrapWarnings(
+          this.validateLength(name, 5),
+          this.validateRequired(name)
+        );
+        break;
+      case 'password':
+      case 'password2':
+        warnings = this.wrapWarnings(
+          this.validatePasswordMatch('password', 'password2'),
+          this.validateRequired(name)
+        );
+        break;
+      case 'comments':
+        warnings = this.wrapWarnings(
+          this.validateLength(name, 20),
+          this.validateRequired(name)
+        );
+        break;
+      default:
+        break;
+    }
+    return warnings;
+  };
   handleBlur = event => {
     const target = event.target;
     const name = target.name;
     const message = this.constructor.placeHolder[name].message;
-    switch (name) {
-      case 'name':
-        this.validateLength(name, 5);
-        break;
-      case 'password':
-      case 'password2':
-        this.validatePasswordMatch();
-        break;
-      case 'comments':
-        this.validateLength(name, 10);
-        break;
-    }
+
+    const warnings = this.validateItem(name);
     if (target.value.length === 0) {
       this.setState({
         [name]: Object.assign({}, this.state[name], {
           message: message,
-          color: 'grey'
+          color: 'grey',
+          warnings
+        })
+      });
+    } else if (name === 'password' || name === 'password2') {
+      // match two password input behavior
+      this.setState({
+        password: Object.assign({}, this.state.password, {
+          warnings
+        }),
+        password2: Object.assign({}, this.state.password2, {
+          warnings
+        })
+      });
+    } else {
+      this.setState({
+        [name]: Object.assign({}, this.state[name], {
+          warnings
         })
       });
     }
@@ -129,7 +176,7 @@ export default class Form extends React.Component {
   };
 
   renderInput = (type, name) => {
-    const borderColor = this.state[name].isValid === false ? 'red' : null;
+    const borderColor = this.state[name].warnings.length ? 'red' : null;
     const props = {
       type: type,
       name: name,
@@ -156,32 +203,23 @@ export default class Form extends React.Component {
           Name:
         </label>
         {this.renderInput('text', 'name')}
-        <Warning
-          isValid={this.state.name.isValid}
-          validationType="length"
-          length={5}
-        />
+        {this.state.name.warnings}
         <label htmlFor="password">
           Password:
         </label>
         {this.renderInput('password', 'password')}
+        {this.state.password.warnings}
         <label htmlFor="password2">
           Password:
         </label>
         {this.renderInput('password', 'password2')}
-        <Warning
-          isValid={this.state.password2.isValid}
-          validationType="passwordMatch"
-        />
+        {this.state.password2.warnings}
+
         <label htmlFor="comments">
           Comments:
         </label>
         {this.renderInput('textarea', 'comments')}
-        <Warning
-          isValid={this.state.comments.isValid}
-          validationType="length"
-          length={20}
-        />
+        {this.state.comments.warnings}
         <input type="submit" value="Submit" />
       </form>
     );
