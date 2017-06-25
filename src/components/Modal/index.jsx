@@ -17,6 +17,8 @@ ModalWindow.PropTypes = {
 	handleClickClose: PropTypes.func.isRequired,
 }
 
+export {ModalWindow}
+
 export default class Modal extends React.Component {
 	state = {isActive: false}
 	
