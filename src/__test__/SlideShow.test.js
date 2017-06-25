@@ -1,5 +1,5 @@
 import React from 'react';
-import SlideShow from '../components/SlideShow';
+import SlideShow from '../components/SlideShow/';
 import { mount } from 'enzyme';
 
 describe('<SlideShow />', () => {
