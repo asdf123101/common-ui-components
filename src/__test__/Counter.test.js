@@ -1,5 +1,5 @@
 import React from 'react';
-import Counter from '../components/Counter';
+import Counter from '../components/Counter/Counter';
 import { mount } from 'enzyme';
 
 // state in redux app is preserved among tests
