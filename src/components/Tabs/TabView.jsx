@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ContentView from './ContentView'
+import ContentView from './ContentView';
 
 const data = {
   tabs: ['One', 'Two', 'Three'],

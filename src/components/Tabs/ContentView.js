@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 const ContentView = props => <div className="tabContent">{props.content}</div>;
 

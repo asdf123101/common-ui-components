@@ -33,6 +33,10 @@
     "*.js": [
       "prettier --single-quote --es5 --write",
       "git add"
+    ],
+    "*.jsx": [
+      "prettier --single-quote --es5 --write",
+      "git add"
     ]
   }
 }
