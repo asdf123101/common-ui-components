@@ -1,10 +1,11 @@
 import React from 'react';
 import Form from './Form';
+import SharedTile from '../Utils/SharedTitle';
 
 const FormDemo = () => {
   return (
     <div>
-      <h2>Comments</h2>
+      <SharedTile/>
       <p>
         This form is constructed purely in React without any external library.
         The placeholders and validation are implemented in pure Javascript, thus

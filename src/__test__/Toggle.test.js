@@ -1,6 +1,6 @@
 import React from 'react';
 import Toggle from '../components/Toggle';
-import FadeInOut from '../components/Animation/FadeInOut'
+import FadeInOut from '../components/Utils/FadeInOut'
 import { mount, shallow } from 'enzyme';
 
 describe('Toggle', () => {
