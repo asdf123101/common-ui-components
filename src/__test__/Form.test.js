@@ -1,5 +1,5 @@
 import React from 'react';
-import Form from '../components/Form';
+import Form from '../components/Form/Form.js';
 import { mount, shallow } from 'enzyme';
 
 describe('Place holder', () => {
@@ -75,11 +75,11 @@ describe('Validation', () => {
     inputField.simulate('blur');
     expect(formWindow.find('.warning').length).toBeTruthy();
   });
-  
-   it('Submitting an empty form shows all warnings', () => {
+
+  it('Submitting an empty form shows all warnings', () => {
     const formWindow = mount(<Form />);
     formWindow.simulate('submit');
     // two warnings on two pwd input fields
-     expect(formWindow.find('.warning').length).toBeTruthy();
+    expect(formWindow.find('.warning').length).toBeTruthy();
   });
 });
