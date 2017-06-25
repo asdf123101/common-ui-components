@@ -1,5 +1,5 @@
 import React from 'react';
-import Modal from '../components/Modal';
+import Modal from '../components/Modal/Modal';
 import { mount, shallow } from 'enzyme';
 
 describe('<Modal />', () => {
