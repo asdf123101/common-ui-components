@@ -18,7 +18,7 @@ export default class Form extends React.Component {
 
   validateRequired = name => {
     const warning = (
-      <Motion defaultStyle={{ x: 0 }} style={{ x: spring(1) }}>
+      <Motion defaultStyle={{ x: 0 }} style={{ x: spring(1) }} key="isRequired">
         {({ x }) =>
           <span className="warning" style={{ opacity: x }}>
             This field is required.
@@ -33,9 +33,13 @@ export default class Form extends React.Component {
 
   validateLength = (name, length) => {
     const warning = (
-      <Motion defaultStyle={{ x: 0 }} style={{ x: spring(1) }}>
+      <Motion
+        defaultStyle={{ x: 0 }}
+        style={{ x: spring(1) }}
+        key="isMinLength"
+      >
         {({ x }) =>
-          <span className="warning"  style={{ opacity: x }}>
+          <span className="warning" style={{ opacity: x }}>
             This field should at least have {length} characters.
           </span>}
       </Motion>
@@ -50,7 +54,7 @@ export default class Form extends React.Component {
     const password1 = this.state[name1].message;
     const password2 = this.state[name2].message;
     const warning = (
-      <span className="warning">
+      <span className="warning" key="isPwdMatch">
         Password don't match.
       </span>
     );
@@ -61,6 +65,7 @@ export default class Form extends React.Component {
   handleSubmit = event => {
     // force validate all fields
     const keys = Object.keys(this.state);
+
     keys.forEach(name => {
       const warnings = this.validateItem(name);
       if (name === 'password' || name === 'password2') {
@@ -104,32 +109,31 @@ export default class Form extends React.Component {
     }
   };
 
+  wrapWarnings = (...theArgs) => {
+    const validWarnings = theArgs.filter(arg => arg !== null);
+    return validWarnings;
+  };
+
   validateItem = name => {
     let warnings;
     switch (name) {
       case 'name':
-        warnings = (
-          <div>
-            {this.validateLength(name, 5)}
-            {this.validateRequired(name)}
-          </div>
+        warnings = this.wrapWarnings(
+          this.validateLength(name, 5),
+          this.validateRequired(name)
         );
         break;
       case 'password':
       case 'password2':
-        warnings = (
-          <div>
-            {this.validatePasswordMatch('password', 'password2')}
-            {this.validateRequired(name)}
-          </div>
+        warnings = this.wrapWarnings(
+          this.validatePasswordMatch('password', 'password2'),
+          this.validateRequired(name)
         );
         break;
       case 'comments':
-        warnings = (
-          <div>
-            {this.validateLength(name, 20)}
-            {this.validateRequired(name)}
-          </div>
+        warnings = this.wrapWarnings(
+          this.validateLength(name, 20),
+          this.validateRequired(name)
         );
         break;
       default:
@@ -154,16 +158,19 @@ export default class Form extends React.Component {
     } else if (name === 'password' || name === 'password2') {
       // match two password inputs behavior
       this.setState({
-        password: {...this.state.password, 
+        password: {
+          ...this.state.password,
           warnings
         },
-        password2:{ ...this.state.password2, 
+        password2: {
+          ...this.state.password2,
           warnings
         }
       });
     } else {
       this.setState({
-        [name]: {...this.state[name], 
+        [name]: {
+          ...this.state[name],
           warnings
         }
       });
