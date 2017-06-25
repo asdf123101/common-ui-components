@@ -1,6 +1,6 @@
 {
   "name": "common-ui-components",
-  "version": "0.1.0",
+  "version": "2.0.0",
   "private": true,
   "dependencies": {
     "prop-types": "^15.5.10",
