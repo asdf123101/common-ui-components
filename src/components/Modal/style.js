@@ -1,4 +1,6 @@
-.modal {
+import styled from 'styled-components';
+
+const ModalWrapper = styled.div`
 	display: block;
 	position: absolute;
 	top: 0;
@@ -10,22 +12,22 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-}
+`;
 
-.modal p {
+const ModalPara = styled.p`
 	width: 90vw;
 	background-color: #fff;
 	padding: 10px;
-}
 
-@media screen and (min-width: 600px) {
-	.modal p {
+  @media screen and (min-width: 600px) {
 		width: 40vw;
 	}
-	
-}
-button.hide {
+`;
+
+const ModalButton = styled.button`
 	position: fixed;
 	right: 20px;
 	top: 20px;
-}
+`;
+
+export { ModalWrapper, ModalPara, ModalButton };

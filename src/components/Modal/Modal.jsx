@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './style.css';
+import { ModalWrapper, ModalPara, ModalButton } from './style.js';
 
 const ModalWindow = ({ isActive, handleClickClose }) => {
   if (isActive) {
     return (
-      <div className={'modal'}>
-        <button className="hide" onClick={handleClickClose}>X</button>
-        <p>
+      <ModalWrapper>
+        <ModalButton onClick={handleClickClose}>X</ModalButton>
+        <ModalPara>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -16,12 +16,14 @@ const ModalWindow = ({ isActive, handleClickClose }) => {
           reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
           pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
           culpa qui officia deserunt mollit anim id est laborum.
-        </p>
-      </div>
+        </ModalPara>
+      </ModalWrapper>
     );
   }
   return null;
 };
+
+ModalWindow.displayName = 'ModalWindow';
 
 ModalWindow.PropTypes = {
   isActive: PropTypes.bool.isRequired,

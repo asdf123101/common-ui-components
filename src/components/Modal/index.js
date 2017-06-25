@@ -2,7 +2,7 @@ import React from 'react';
 import Modal from './Modal';
 import SharedTitle from '../Utils/SharedTitle.jsx';
 
-import './style.css';
+// import './style.css';
 
 const ModalDemo = () =>
   <div>
