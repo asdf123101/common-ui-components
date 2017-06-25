@@ -18,12 +18,12 @@ export default class Form extends React.Component {
 
   validateRequired = name => {
     const warning = (
-            <Motion defaultStyle={{x:0}} style={{ x: spring(1) }}>
-        {({x}) =>
-          <span className="warning" key="isRequired" style={{opacity:x}}>
-        This field is required.
-      </span>}
-           </Motion>
+      <Motion defaultStyle={{ x: 0 }} style={{ x: spring(1) }}>
+        {({ x }) =>
+          <span className="warning" style={{ opacity: x }}>
+            This field is required.
+          </span>}
+      </Motion>
     );
     const color = this.state[name].color;
     return this.state[name].message.length > 0 && color !== 'grey'
@@ -33,11 +33,11 @@ export default class Form extends React.Component {
 
   validateLength = (name, length) => {
     const warning = (
-      <Motion defaultStyle={{x:0}} style={{ x: spring(1) }}>
-        {({x}) =>
-          <span className="warning" key="minLength" style={{opacity: x}}>
-        This field should at least have {length} characters.
-      </span>}
+      <Motion defaultStyle={{ x: 0 }} style={{ x: spring(1) }}>
+        {({ x }) =>
+          <span className="warning"  style={{ opacity: x }}>
+            This field should at least have {length} characters.
+          </span>}
       </Motion>
     );
     const color = this.state[name].color;
@@ -50,7 +50,7 @@ export default class Form extends React.Component {
     const password1 = this.state[name1].message;
     const password2 = this.state[name2].message;
     const warning = (
-      <span className="warning" key="pwdMatch">
+      <span className="warning">
         Password don't match.
       </span>
     );
@@ -62,36 +62,34 @@ export default class Form extends React.Component {
     // force validate all fields
     const keys = Object.keys(this.state);
     keys.forEach(name => {
-       const warnings = this.validateItem(name);
-if (name === 'password' || name === 'password2') {
-      // match two password input behavior
-      this.setState({
-        password: Object.assign({}, this.state.password, {
-          warnings
-        }),
-        password2: Object.assign({}, this.state.password2, {
-          warnings
-        })
-      });
-    } else {
-      this.setState({
-        [name]: Object.assign({}, this.state[name], {
-          warnings
-        })
-      });
-    }
+      const warnings = this.validateItem(name);
+      if (name === 'password' || name === 'password2') {
+        // match two password input behavior
+        this.setState({
+          password: Object.assign({}, this.state.password, {
+            warnings
+          }),
+          password2: Object.assign({}, this.state.password2, {
+            warnings
+          })
+        });
+      } else {
+        this.setState({
+          [name]: Object.assign({}, this.state[name], {
+            warnings
+          })
+        });
+      }
     });
 
     const inValidFields = keys.filter(
       name => this.state[name].warnings.length !== 0
     );
-    if (inValidFields.length !== 0 || this.state.password.color === 'grey') {event.preventDefault()};
+    if (inValidFields.length !== 0 || this.state.password.color === 'grey') {
+      event.preventDefault();
+    }
   };
 
-  wrapWarnings = (...theArgs) => {
-    const validWarnings = theArgs.filter(arg => arg !== null);
-    return validWarnings;
-  };
   handleFocus = event => {
     const target = event.target;
     const name = target.name;
@@ -110,22 +108,28 @@ if (name === 'password' || name === 'password2') {
     let warnings;
     switch (name) {
       case 'name':
-        warnings = this.wrapWarnings(
-          this.validateLength(name, 5),
-          this.validateRequired(name)
+        warnings = (
+          <div>
+            {this.validateLength(name, 5)}
+            {this.validateRequired(name)}
+          </div>
         );
         break;
       case 'password':
       case 'password2':
-        warnings = this.wrapWarnings(
-          this.validatePasswordMatch('password', 'password2'),
-          this.validateRequired(name)
+        warnings = (
+          <div>
+            {this.validatePasswordMatch('password', 'password2')}
+            {this.validateRequired(name)}
+          </div>
         );
         break;
       case 'comments':
-        warnings = this.wrapWarnings(
-          this.validateLength(name, 20),
-          this.validateRequired(name)
+        warnings = (
+          <div>
+            {this.validateLength(name, 20)}
+            {this.validateRequired(name)}
+          </div>
         );
         break;
       default:
@@ -133,11 +137,11 @@ if (name === 'password' || name === 'password2') {
     }
     return warnings;
   };
+
   handleBlur = event => {
     const target = event.target;
     const name = target.name;
     const message = this.constructor.placeHolder[name].message;
-
     const warnings = this.validateItem(name);
     if (target.value.length === 0) {
       this.setState({
@@ -148,20 +152,20 @@ if (name === 'password' || name === 'password2') {
         })
       });
     } else if (name === 'password' || name === 'password2') {
-      // match two password input behavior
+      // match two password inputs behavior
       this.setState({
-        password: Object.assign({}, this.state.password, {
+        password: {...this.state.password, 
           warnings
-        }),
-        password2: Object.assign({}, this.state.password2, {
+        },
+        password2:{ ...this.state.password2, 
           warnings
-        })
+        }
       });
     } else {
       this.setState({
-        [name]: Object.assign({}, this.state[name], {
+        [name]: {...this.state[name], 
           warnings
-        })
+        }
       });
     }
   };
@@ -192,7 +196,6 @@ if (name === 'password' || name === 'password2') {
     if (type === 'textarea') {
       return <textarea {...props} />;
     }
-
     return <input {...props} />;
   };
 

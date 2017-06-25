@@ -1,5 +1,6 @@
 import React from 'react';
 import { Motion, spring } from 'react-motion';
+import FadeInOut from '../Animation/FadeInOut'
 
 import './style.css';
 
@@ -13,6 +14,7 @@ export default class Toggle extends React.Component {
   };
 
   render() {
+    const animatedContent = this.state.open ? [{key: 'FadeInOut',data:'FadeInOut', opacity: spring(1)}] : null
     return (
       <div>
         <p>
@@ -35,6 +37,7 @@ export default class Toggle extends React.Component {
               />
             </div>}
         </Motion>
+        <FadeInOut content={animatedContent}/>
       </div>
     );
   }
