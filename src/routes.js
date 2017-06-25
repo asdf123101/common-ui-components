@@ -6,7 +6,7 @@ import App from './components/App';
 import Nav from './components/Nav';
 import ToggleDemo from './components/Toggle';
 import Home from './components/Home';
-import TabView from './components/Tabs';
+import TabViewDemo from './components/Tabs';
 import Modal from './components/Modal';
 import SlideShow from './components/SlideShow';
 import Counter from './components/Counter';
@@ -22,7 +22,7 @@ const Routes = props =>
         <Switch>
           <Route path="/" exact component={Home} />
           <Route path="/toggle" component={ToggleDemo} />
-          <Route path="/tabs" component={TabView} />
+          <Route path="/tabs" component={TabViewDemo} />
           <Route path="/counter" component={Counter} />
           <Route path="/modal" component={Modal} />
           <Route path="/slideshow" component={SlideShow} />
