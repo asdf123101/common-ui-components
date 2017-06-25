@@ -1,5 +1,5 @@
 import React from 'react';
-import TabView from '../components/Tabs';
+import TabView from '../components/Tabs/TabView';
 import { shallow, mount } from 'enzyme';
 
 describe('<TabView />', () => {
@@ -26,26 +26,26 @@ describe('<TabView />', () => {
   });
 
   it('Default active content is correct', () => {
-    let data = {
+    const data = {
       tabs: ['one', 'two', 'thre'],
       content: ['1', '2', '3']
     };
     props = {
-      data: data
+      data
     };
     const tabContent = tabView().find('.tabContent');
     expect(tabContent.find('div').text()).toBe('1');
   });
 
   it('Click on the inactive tab activate the tab', () => {
-    let data = {
+    const data = {
       tabs: ['one', 'two', 'thre'],
       content: ['1', '2', '3']
     };
     props = {
-      data: data
+      data
     };
-    var tabViewWindow = tabView();
+    const tabViewWindow = tabView();
     const tab1 = tabViewWindow.find('.tab').at(1);
     const tab1Activated = tab1.simulate('click');
     expect(tab1Activated.hasClass('active')).toBe(true);
