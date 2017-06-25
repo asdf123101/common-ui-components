@@ -1,0 +1,25 @@
+
+.tab {
+	border: 0;
+	border-top: 1px solid black;
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+	border-radius: 5px 5px 0 0;
+	background-color: grey;
+	padding: 10px;
+	margin-right: 5px;
+	color: white;
+	display: inline-block;
+	outline:none;
+	width: 80px;
+}
+
+.tab.active {
+	background-color: #111;
+	box-shadow: 1px 2px 5px grey;
+}
+
+.tabContent {
+	padding: 10px 10px;
+	border: 1px solid black;
+}

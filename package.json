@@ -1,20 +1,42 @@
 {
   "name": "common-ui-components",
-  "version": "0.1.0",
+  "version": "2.0.0",
   "private": true,
   "dependencies": {
+    "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
-    "react-router": "^4.1.1",
-    "react-motion": "^0.5.0"
+    "react-flip-move": "2.9.14",
+    "react-motion": "^0.5.0",
+    "react-redux": "^5.0.5",
+    "react-router-dom": "4.1.1",
+    "redux": "^3.7.0"
   },
   "devDependencies": {
+    "enzyme": "^2.8.2",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^15.0.1",
+    "eslint-config-google": "^0.8.0",
+    "eslint-plugin-import": "^2.3.0",
+    "eslint-plugin-jsx-a11y": "^5.0.3",
+    "eslint-plugin-react": "^7.1.0",
     "react-scripts": "1.0.7"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "precommit": "lint-staged",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "lint-staged": {
+    "*.js": [
+      "prettier --single-quote --es5 --write",
+      "git add"
+    ],
+    "*.jsx": [
+      "prettier --single-quote --es5 --write",
+      "git add"
+    ]
   }
 }

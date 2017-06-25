@@ -1,9 +1,19 @@
 import React from 'react';
+import TabView from './TabView';
+import SharedTitle from '../Utils/SharedTitle.jsx';
 
-function Tabs(props) {
-	return (
-		<h2>The navigation bar is an example of tab view.</h2>
-	)
-}
+import './style.css';
 
-export default Tabs
+const TabViewDemo = () =>
+  <div>
+    <SharedTitle />
+    <p>
+      The navigation bar is itself a tab view, althoug it is constructed
+      with react-route to update URL. The following is a pure tab view that
+      does not interfere with URL.
+    </p>
+    <hr />
+    <TabView />
+  </div>;
+
+export default TabViewDemo;
