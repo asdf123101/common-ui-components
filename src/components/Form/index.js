@@ -5,7 +5,7 @@ import Code from '../Utils/Code';
 
 const FormDemo = () => {
   return (
-    <div>
+    <div style={{ display: 'inline-block', wordWrap: 'break-word' }}>
       <SharedTile />
       <p>
         This form is constructed purely in React without any external library.

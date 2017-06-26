@@ -2,8 +2,6 @@ import React from 'react';
 import SlideShow from './SlideShow';
 import SharedTitle from '../Utils/SharedTitle.jsx';
 
-import './style.css';
-
 const ModalDemo = () =>
   <div>
     <SharedTitle />

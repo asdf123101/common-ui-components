@@ -7,11 +7,13 @@ const Container = styled.div`
 `;
 
 const ComponentWrapper = styled.div`
-    width: 100%;
-	padding: 20px;
-@media screen and (min-width: 800px) {
+  display: inline-block;
+  margin: 0;
+  padding: 20px;
+  overflow: hidden;
+  @media (min-width: 800px) {
     width: 70vw;
-}
+  }
 `;
 
 export { Container, ComponentWrapper };

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import FlipMove from 'react-flip-move';
+import { Button, SingleSlide } from './style';
 
 class Slide extends React.Component {
   static propTypes = {
@@ -9,11 +10,10 @@ class Slide extends React.Component {
     zIndex: PropTypes.number
   };
   render() {
-    const className = 'slide slide' + this.props.index + this.props.center;
     return (
-      <div className={className} style={{ zIndex: this.props.zIndex }}>
+      <SingleSlide index={this.props.index} zIndex={this.props.zIndex}>
         <h2>{this.props.slide}</h2>
-      </div>
+      </SingleSlide>
     );
   }
 }
@@ -75,13 +75,13 @@ export default class SlideShow extends React.Component {
   render() {
     return (
       <div className="slideshow">
-        <button className="left" onClick={this.handleLeftClick}>
+        <Button onClick={this.handleLeftClick}>
           &lt;
-        </button>
+        </Button>
         {this.renderSlides()}
-        <button className="right" onClick={this.handleRightClick}>
+        <Button onClick={this.handleRightClick}>
           &gt;
-        </button>
+        </Button>
       </div>
     );
   }

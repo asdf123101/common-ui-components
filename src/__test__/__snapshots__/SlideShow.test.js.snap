@@ -1,0 +1,628 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SlideShow /> Snapshot testing clicking button behavior 1`] = `
+<ModalDemo>
+  <div>
+    <SharedTile>
+      <h2>
+        Comments
+      </h2>
+    </SharedTile>
+    <p>
+      Clicking the button will slide the blocks and the center block is always colored. The animation is borrowed from React-flip-move library with some hack. Overall doing transition animation in React is a bit hard.
+       
+    </p>
+    <hr />
+    <SlideShow>
+      <div
+        className="slideshow"
+      >
+        <styled.button
+          onClick={[Function]}
+        >
+          <button
+            className="sc-bdVaJa hfyYsj"
+            onClick={[Function]}
+          >
+            &lt;
+          </button>
+        </styled.button>
+        <div
+          className="slide-group"
+        >
+          <FlipMovePropConverter
+            delay={0}
+            disableAllAnimations={false}
+            duration={600}
+            easing="ease-in-out"
+            enterAnimation="elevator"
+            getPosition={[Function]}
+            leaveAnimation="elevator"
+            maintainContainerHeight={false}
+            staggerDelayBy={0}
+            staggerDurationBy={0}
+            typeName="div"
+            verticalAlignment="top"
+          >
+            <FlipMove
+              delay={0}
+              delegated={
+                Object {
+                  "style": Object {
+                    "position": "relative",
+                  },
+                }
+              }
+              disableAllAnimations={false}
+              duration={600}
+              easing="ease-in-out"
+              enterAnimation={
+                Object {
+                  "from": Object {
+                    "opacity": "0",
+                    "transform": "scale(0)",
+                  },
+                  "to": Object {
+                    "opacity": "",
+                    "transform": "",
+                  },
+                }
+              }
+              getPosition={[Function]}
+              leaveAnimation={
+                Object {
+                  "from": Object {
+                    "opacity": "1",
+                    "transform": "scale(1)",
+                  },
+                  "to": Object {
+                    "opacity": "0",
+                    "transform": "scale(0)",
+                  },
+                }
+              }
+              maintainContainerHeight={false}
+              staggerDelayBy={0}
+              staggerDurationBy={0}
+              typeName="div"
+              verticalAlignment="top"
+            >
+              <div
+                style={
+                  Object {
+                    "position": "relative",
+                  }
+                }
+              >
+                <Slide
+                  center=""
+                  index={0}
+                  slide={0}
+                  zIndex={null}
+                >
+                  <styled.div
+                    index={0}
+                    zIndex={null}
+                  >
+                    <div
+                      className="sc-bwzfXH doglcs"
+                    >
+                      <h2>
+                        0
+                      </h2>
+                    </div>
+                  </styled.div>
+                </Slide>
+                <Slide
+                  center=""
+                  index={1}
+                  slide={1}
+                  zIndex={null}
+                >
+                  <styled.div
+                    index={1}
+                    zIndex={null}
+                  >
+                    <div
+                      className="sc-bwzfXH ibyLJJ"
+                    >
+                      <h2>
+                        1
+                      </h2>
+                    </div>
+                  </styled.div>
+                </Slide>
+                <Slide
+                  center=" center"
+                  index={2}
+                  slide={2}
+                  zIndex={null}
+                >
+                  <styled.div
+                    index={2}
+                    zIndex={null}
+                  >
+                    <div
+                      className="sc-bwzfXH fdFopt"
+                    >
+                      <h2>
+                        2
+                      </h2>
+                    </div>
+                  </styled.div>
+                </Slide>
+                <Slide
+                  center=""
+                  index={3}
+                  slide={3}
+                  zIndex={null}
+                >
+                  <styled.div
+                    index={3}
+                    zIndex={null}
+                  >
+                    <div
+                      className="sc-bwzfXH ibyLJJ"
+                    >
+                      <h2>
+                        3
+                      </h2>
+                    </div>
+                  </styled.div>
+                </Slide>
+                <Slide
+                  center=""
+                  index={4}
+                  slide={4}
+                  zIndex={null}
+                >
+                  <styled.div
+                    index={4}
+                    zIndex={null}
+                  >
+                    <div
+                      className="sc-bwzfXH doglcs"
+                    >
+                      <h2>
+                        4
+                      </h2>
+                    </div>
+                  </styled.div>
+                </Slide>
+              </div>
+            </FlipMove>
+          </FlipMovePropConverter>
+        </div>
+        <styled.button
+          onClick={[Function]}
+        >
+          <button
+            className="sc-bdVaJa hfyYsj"
+            onClick={[Function]}
+          >
+            &gt;
+          </button>
+        </styled.button>
+      </div>
+    </SlideShow>
+  </div>
+</ModalDemo>
+`;
+
+exports[`<SlideShow /> Snapshot testing clicking button behavior 2`] = `
+<ModalDemo>
+  <div>
+    <SharedTile>
+      <h2>
+        Comments
+      </h2>
+    </SharedTile>
+    <p>
+      Clicking the button will slide the blocks and the center block is always colored. The animation is borrowed from React-flip-move library with some hack. Overall doing transition animation in React is a bit hard.
+       
+    </p>
+    <hr />
+    <SlideShow>
+      <div
+        className="slideshow"
+      >
+        <styled.button
+          onClick={[Function]}
+        >
+          <button
+            className="sc-bdVaJa hfyYsj"
+            onClick={[Function]}
+          >
+            &lt;
+          </button>
+        </styled.button>
+        <div
+          className="slide-group"
+        >
+          <FlipMovePropConverter
+            delay={0}
+            disableAllAnimations={false}
+            duration={600}
+            easing="ease-in-out"
+            enterAnimation="elevator"
+            getPosition={[Function]}
+            leaveAnimation="elevator"
+            maintainContainerHeight={false}
+            staggerDelayBy={0}
+            staggerDurationBy={0}
+            typeName="div"
+            verticalAlignment="top"
+          >
+            <FlipMove
+              delay={0}
+              delegated={
+                Object {
+                  "style": Object {
+                    "position": "relative",
+                  },
+                }
+              }
+              disableAllAnimations={false}
+              duration={600}
+              easing="ease-in-out"
+              enterAnimation={
+                Object {
+                  "from": Object {
+                    "opacity": "0",
+                    "transform": "scale(0)",
+                  },
+                  "to": Object {
+                    "opacity": "",
+                    "transform": "",
+                  },
+                }
+              }
+              getPosition={[Function]}
+              leaveAnimation={
+                Object {
+                  "from": Object {
+                    "opacity": "1",
+                    "transform": "scale(1)",
+                  },
+                  "to": Object {
+                    "opacity": "0",
+                    "transform": "scale(0)",
+                  },
+                }
+              }
+              maintainContainerHeight={false}
+              staggerDelayBy={0}
+              staggerDurationBy={0}
+              typeName="div"
+              verticalAlignment="top"
+            >
+              <div
+                style={
+                  Object {
+                    "position": "relative",
+                  }
+                }
+              >
+                <Slide
+                  center=""
+                  index={0}
+                  slide={1}
+                  zIndex={null}
+                >
+                  <styled.div
+                    index={0}
+                    zIndex={null}
+                  >
+                    <div
+                      className="sc-bwzfXH doglcs"
+                    >
+                      <h2>
+                        1
+                      </h2>
+                    </div>
+                  </styled.div>
+                </Slide>
+                <Slide
+                  center=""
+                  index={1}
+                  slide={2}
+                  zIndex={null}
+                >
+                  <styled.div
+                    index={1}
+                    zIndex={null}
+                  >
+                    <div
+                      className="sc-bwzfXH ibyLJJ"
+                    >
+                      <h2>
+                        2
+                      </h2>
+                    </div>
+                  </styled.div>
+                </Slide>
+                <Slide
+                  center=" center"
+                  index={2}
+                  slide={3}
+                  zIndex={null}
+                >
+                  <styled.div
+                    index={2}
+                    zIndex={null}
+                  >
+                    <div
+                      className="sc-bwzfXH fdFopt"
+                    >
+                      <h2>
+                        3
+                      </h2>
+                    </div>
+                  </styled.div>
+                </Slide>
+                <Slide
+                  center=""
+                  index={3}
+                  slide={4}
+                  zIndex={null}
+                >
+                  <styled.div
+                    index={3}
+                    zIndex={null}
+                  >
+                    <div
+                      className="sc-bwzfXH ibyLJJ"
+                    >
+                      <h2>
+                        4
+                      </h2>
+                    </div>
+                  </styled.div>
+                </Slide>
+                <Slide
+                  center=""
+                  index={4}
+                  slide={0}
+                  zIndex={-10}
+                >
+                  <styled.div
+                    index={4}
+                    zIndex={-10}
+                  >
+                    <div
+                      className="sc-bwzfXH cRmtGE"
+                    >
+                      <h2>
+                        0
+                      </h2>
+                    </div>
+                  </styled.div>
+                </Slide>
+              </div>
+            </FlipMove>
+          </FlipMovePropConverter>
+        </div>
+        <styled.button
+          onClick={[Function]}
+        >
+          <button
+            className="sc-bdVaJa hfyYsj"
+            onClick={[Function]}
+          >
+            &gt;
+          </button>
+        </styled.button>
+      </div>
+    </SlideShow>
+  </div>
+</ModalDemo>
+`;
+
+exports[`<SlideShow /> Snapshot testing clicking button behavior 3`] = `
+<ModalDemo>
+  <div>
+    <SharedTile>
+      <h2>
+        Comments
+      </h2>
+    </SharedTile>
+    <p>
+      Clicking the button will slide the blocks and the center block is always colored. The animation is borrowed from React-flip-move library with some hack. Overall doing transition animation in React is a bit hard.
+       
+    </p>
+    <hr />
+    <SlideShow>
+      <div
+        className="slideshow"
+      >
+        <styled.button
+          onClick={[Function]}
+        >
+          <button
+            className="sc-bdVaJa hfyYsj"
+            onClick={[Function]}
+          >
+            &lt;
+          </button>
+        </styled.button>
+        <div
+          className="slide-group"
+        >
+          <FlipMovePropConverter
+            delay={0}
+            disableAllAnimations={false}
+            duration={600}
+            easing="ease-in-out"
+            enterAnimation="elevator"
+            getPosition={[Function]}
+            leaveAnimation="elevator"
+            maintainContainerHeight={false}
+            staggerDelayBy={0}
+            staggerDurationBy={0}
+            typeName="div"
+            verticalAlignment="top"
+          >
+            <FlipMove
+              delay={0}
+              delegated={
+                Object {
+                  "style": Object {
+                    "position": "relative",
+                  },
+                }
+              }
+              disableAllAnimations={false}
+              duration={600}
+              easing="ease-in-out"
+              enterAnimation={
+                Object {
+                  "from": Object {
+                    "opacity": "0",
+                    "transform": "scale(0)",
+                  },
+                  "to": Object {
+                    "opacity": "",
+                    "transform": "",
+                  },
+                }
+              }
+              getPosition={[Function]}
+              leaveAnimation={
+                Object {
+                  "from": Object {
+                    "opacity": "1",
+                    "transform": "scale(1)",
+                  },
+                  "to": Object {
+                    "opacity": "0",
+                    "transform": "scale(0)",
+                  },
+                }
+              }
+              maintainContainerHeight={false}
+              staggerDelayBy={0}
+              staggerDurationBy={0}
+              typeName="div"
+              verticalAlignment="top"
+            >
+              <div
+                style={
+                  Object {
+                    "position": "relative",
+                  }
+                }
+              >
+                <Slide
+                  center=""
+                  index={0}
+                  slide={0}
+                  zIndex={-10}
+                >
+                  <styled.div
+                    index={0}
+                    zIndex={-10}
+                  >
+                    <div
+                      className="sc-bwzfXH cRmtGE"
+                    >
+                      <h2>
+                        0
+                      </h2>
+                    </div>
+                  </styled.div>
+                </Slide>
+                <Slide
+                  center=""
+                  index={1}
+                  slide={1}
+                  zIndex={null}
+                >
+                  <styled.div
+                    index={1}
+                    zIndex={null}
+                  >
+                    <div
+                      className="sc-bwzfXH ibyLJJ"
+                    >
+                      <h2>
+                        1
+                      </h2>
+                    </div>
+                  </styled.div>
+                </Slide>
+                <Slide
+                  center=" center"
+                  index={2}
+                  slide={2}
+                  zIndex={null}
+                >
+                  <styled.div
+                    index={2}
+                    zIndex={null}
+                  >
+                    <div
+                      className="sc-bwzfXH fdFopt"
+                    >
+                      <h2>
+                        2
+                      </h2>
+                    </div>
+                  </styled.div>
+                </Slide>
+                <Slide
+                  center=""
+                  index={3}
+                  slide={3}
+                  zIndex={null}
+                >
+                  <styled.div
+                    index={3}
+                    zIndex={null}
+                  >
+                    <div
+                      className="sc-bwzfXH ibyLJJ"
+                    >
+                      <h2>
+                        3
+                      </h2>
+                    </div>
+                  </styled.div>
+                </Slide>
+                <Slide
+                  center=""
+                  index={4}
+                  slide={4}
+                  zIndex={null}
+                >
+                  <styled.div
+                    index={4}
+                    zIndex={null}
+                  >
+                    <div
+                      className="sc-bwzfXH doglcs"
+                    >
+                      <h2>
+                        4
+                      </h2>
+                    </div>
+                  </styled.div>
+                </Slide>
+              </div>
+            </FlipMove>
+          </FlipMovePropConverter>
+        </div>
+        <styled.button
+          onClick={[Function]}
+        >
+          <button
+            className="sc-bdVaJa hfyYsj"
+            onClick={[Function]}
+          >
+            &gt;
+          </button>
+        </styled.button>
+      </div>
+    </SlideShow>
+  </div>
+</ModalDemo>
+`;
