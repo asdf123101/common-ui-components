@@ -1,17 +1,22 @@
-.nav {
+import styled from 'styled-components';
+
+const NavUl = styled.ul`
     list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
     background-color: #333;
     height: auto;
-}
 
-.nav li {
-    width: 100px;
+@media  (max-width: 800px) {
+        height: auto;
+        width: 100vw;
 }
+`;
 
-.nav li a {
+const NavLi = styled.li`
+width: 100px;
+a {
     display: block;
     color: white;
     text-align: center;
@@ -19,17 +24,12 @@
     text-decoration: none;
 }
 
-/* Change the link color to #111 (black) on hover */
-.nav li a:hover {
+ a:hover {
     background-color: #111;
 }
 
 @media  (max-width: 800px) {
-    .nav ul { 
-        height: auto;
-        width: 100vw;
-    }
-    .nav li {
         float: left;
-    }
 }
+`;
+export { NavUl, NavLi };

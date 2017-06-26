@@ -1,6 +1,6 @@
-// src/routes.js
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Container, ComponentWrapper } from './style.js';
 
 import App from './components/App';
 import Nav from './components/Nav';
@@ -15,22 +15,24 @@ import NotFound from './components/NotFound';
 
 const Routes = props =>
   <Router {...props}>
-    <div className="container">
+    <Container>
       <App />
       <Nav />
-      <main className="components">
-        <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/toggle" component={ToggleDemo} />
-          <Route path="/tabs" component={TabViewDemo} />
-          <Route path="/counter" component={CounterDemo} />
-          <Route path="/modal" component={ModalDemo} />
-          <Route path="/slideshow" component={SlideShowDemo} />
-          <Route path="/form" component={FormDemo} />
-          <Route component={NotFound} />
-        </Switch>
+      <main>
+        <ComponentWrapper>
+          <Switch>
+            <Route path="/" exact component={Home} />
+            <Route path="/toggle" component={ToggleDemo} />
+            <Route path="/tabs" component={TabViewDemo} />
+            <Route path="/counter" component={CounterDemo} />
+            <Route path="/modal" component={ModalDemo} />
+            <Route path="/slideshow" component={SlideShowDemo} />
+            <Route path="/form" component={FormDemo} />
+            <Route component={NotFound} />
+          </Switch>
+        </ComponentWrapper>
       </main>
-    </div>
+    </Container>
   </Router>;
 
 export default Routes;
