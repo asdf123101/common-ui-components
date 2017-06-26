@@ -11,6 +11,7 @@ const ComponentWrapper = styled.div`
   margin: 0;
   padding: 20px;
   overflow: hidden;
+
   @media (min-width: 800px) {
     width: 70vw;
   }

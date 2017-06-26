@@ -14,7 +14,7 @@ const SingleSlide = styled.div`
 	background-color: #fff;
   ${props => {
     if (props.index === 2) {
-      return `background-color: #666`;
+      return `background-color: #70C1B3; color: white;`;
     } else if (props.index === 0 || props.index === 4) {
       return `position: relative;
              z-index: -1;`;

@@ -7,7 +7,7 @@ const Nav = () =>
   <NavUl>
     <NavLi><NavLink to="/" exact={true}>Home</NavLink></NavLi>
     <NavLi><NavLink to="/toggle">Toggle</NavLink></NavLi>
-    <NavLi><NavLink to="/tabs">Tab View</NavLink></NavLi>
+    <NavLi><NavLink to="/tabs">Tabs</NavLink></NavLi>
     <NavLi><NavLink to="/counter">Counter</NavLink></NavLi>
     <NavLi><NavLink to="/modal">Modal</NavLink></NavLi>
     <NavLi><NavLink to="/slideshow">Slide</NavLink></NavLi>

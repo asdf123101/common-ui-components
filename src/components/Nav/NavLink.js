@@ -5,7 +5,10 @@ import { NavLink } from 'react-router-dom';
 export default class MyNav extends React.Component {
   render() {
     return (
-      <NavLink {...this.props} activeStyle={{ backgroundColor: '#111' }} />
+      <NavLink
+        {...this.props}
+        activeStyle={{ backgroundColor: '#da3f3d', color: 'white' }}
+      />
     );
   }
 }

@@ -143,7 +143,7 @@ exports[`<SlideShow /> Snapshot testing clicking button behavior 1`] = `
                     zIndex={null}
                   >
                     <div
-                      className="sc-bwzfXH fdFopt"
+                      className="sc-bwzfXH ksVuqV"
                     >
                       <h2>
                         2
@@ -352,7 +352,7 @@ exports[`<SlideShow /> Snapshot testing clicking button behavior 2`] = `
                     zIndex={null}
                   >
                     <div
-                      className="sc-bwzfXH fdFopt"
+                      className="sc-bwzfXH ksVuqV"
                     >
                       <h2>
                         3
@@ -561,7 +561,7 @@ exports[`<SlideShow /> Snapshot testing clicking button behavior 3`] = `
                     zIndex={null}
                   >
                     <div
-                      className="sc-bwzfXH fdFopt"
+                      className="sc-bwzfXH ksVuqV"
                     >
                       <h2>
                         2
