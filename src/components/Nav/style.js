@@ -15,7 +15,7 @@ const NavUl = styled.ul`
 `;
 
 const NavLi = styled.li`
-  flex: 1;
+  flex: 1 1 20%;
   border-bottom: 1px solid grey;
   a {
     display: block;

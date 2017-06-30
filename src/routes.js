@@ -11,6 +11,7 @@ import ModalDemo from './components/Modal';
 import SlideShowDemo from './components/SlideShow';
 import CounterDemo from './components/Counter';
 import FormDemo from './components/Form';
+import FetcherDemo from './components/Fetcher';
 import NotFound from './components/NotFound';
 
 const Routes = props =>
@@ -28,6 +29,7 @@ const Routes = props =>
             <Route path="/modal" component={ModalDemo} />
             <Route path="/slideshow" component={SlideShowDemo} />
             <Route path="/form" component={FormDemo} />
+            <Route path="/fetcher" component={FetcherDemo} />
             <Route component={NotFound} />
           </Switch>
         </ComponentWrapper>

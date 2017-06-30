@@ -6,10 +6,16 @@ const Header = styled.div`
   height: 100px;
   color: white;
   flex: 0 1 100%;
+  
+  h2 {
+    display: inline-block;
+    margin: 0 10px;
+}
 `;
 
 const Logo = styled.img`
   height: 100px;
+  vertical-align: middle;
 `;
 
 export { Header, Logo };

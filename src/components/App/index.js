@@ -7,6 +7,7 @@ export default class App extends Component {
     return (
       <Header>
         <Logo src={logo} alt="logo" />
+        <h2>Simple UI demos</h2>
       </Header>
     );
   }

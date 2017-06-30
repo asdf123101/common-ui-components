@@ -12,6 +12,7 @@ const Nav = () =>
     <NavLi><NavLink to="/modal">Modal</NavLink></NavLi>
     <NavLi><NavLink to="/slideshow">Slide</NavLink></NavLi>
     <NavLi><NavLink to="/form">Form</NavLink></NavLi>
+    <NavLi><NavLink to="/fetcher">Fetcher</NavLink></NavLi>
     <NavLi><NavLink to="/tabss">Test 404</NavLink></NavLi>
   </NavUl>;
 
